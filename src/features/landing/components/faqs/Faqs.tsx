@@ -28,7 +28,7 @@ const FAQs = () => {
                   We’re always ready to help you out.
                 </p>
               </div>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3 sm:flex-nowrap">
                 <UserAvatarCascade />
                 <Button
                   className="bg-[#A0E870] px-8 text-black hover:bg-[#A0E870]"
