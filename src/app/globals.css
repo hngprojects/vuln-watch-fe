@@ -4,9 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-geist: var(--font-geist);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-success: var(--success);
@@ -15,50 +18,58 @@
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+
+  --color-body: var(--body);
+  --color-header: var(--header);
+  --color-cards: var(--cards);
 }
 
 :root {
-  /* Primary */
-  --primary: #326ad1;
+  /* VulnWatch AI Brand Colors */
+  --primary: #072e28;
   --primary-foreground: #ffffff;
 
-  --secondary: #d1be32;
+  --secondary: #a0e870;
+  --secondary-foreground: #072e28;
 
-  /* Accent */
-  --accent: #e58f17;
-  --accent-foreground: #ffffff;
+  --accent: #a0e870;
+  --accent-foreground: #072e28;
 
-  /* Status */
   --success: #57d132;
-  --error: #d13232;
+  --error: #ef4444;
 
-  /* Neutral */
-  --background: #fcfdff;
-  --foreground: #030d1f;
-  --muted-foreground: #e4e4e4;
-  --border: #e5e5e5;
+  --background: #f0f0f0;
+  --foreground: #666666;
+  --muted-foreground: #666666;
+  --border: #d4d4d4;
+
+  --body: #666666;
+  --header: #2b2b2b;
+  --cards: #ffffff;
 }
 
-/* I hardcoded  dark mode colors until further notice */
+/* I hardcoded dark mode colors until further notice */
 .dark {
-  --primary: #326ad1;
+  --primary: #072e28;
   --primary-foreground: #ffffff;
 
-  --secondary: #d1be32;
+  --secondary: #a0e870;
+  --secondary-foreground: #072e28;
 
-  /* Accent */
-  --accent: #e58f17;
-  --accent-foreground: #ffffff;
+  --accent: #a0e870;
+  --accent-foreground: #072e28;
 
-  /* Status */
   --success: #57d132;
-  --error: #d13232;
+  --error: #ef4444;
 
-  /* Neutral */
-  --background: #fcfdff;
-  --foreground: #030d1f;
-  --muted-foreground: #e4e4e4;
-  --border: #e5e5e5;
+  --background: #f0f0f0;
+  --foreground: #666666;
+  --muted-foreground: #666666;
+  --border: #d4d4d4;
+
+  --body: #666666;
+  --header: #2b2b2b;
+  --cards: #ffffff;
 }
 
 @layer base {
@@ -68,5 +79,11 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .wrapper {
+    @apply mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8;
   }
 }
