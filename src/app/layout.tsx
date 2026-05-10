@@ -32,7 +32,7 @@ export default function RootLayout({
           geist.variable,
           inter.variable,
           geist.className,
-          'max-w-[1920px] antialiased'
+          'min-h-screen w-full antialiased'
         )}
       >
         <Providers>{children}</Providers>
