@@ -5,6 +5,7 @@
 
 @theme inline {
   --font-geist: var(--font-geist);
+  --font-inter: var(--font-inter);
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
