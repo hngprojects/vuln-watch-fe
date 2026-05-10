@@ -1,0 +1,79 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [staging, main]
+
+jobs:
+  build:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      HOST: ${{ secrets.HOST }}
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Next.js application
+        run: pnpm build
+
+      - name: Prepare standalone build
+        run: |
+          cp -r public .next/standalone/
+          cp -r .next/static .next/standalone/.next/
+
+      - name: Archive build artifacts
+        run: |
+          cd .next/standalone
+          tar -czf ../../boilerplate.tar.gz .
+          cd ../../
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Copy artifacts to server
+        run: |
+          sshpass -p "$PASSWORD" scp -o StrictHostKeyChecking=no \
+            boilerplate.tar.gz "$USERNAME@$HOST:~/frontend-build-artifacts/"
+
+      - name: Deploy on server
+        run: |
+          sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME@$HOST" bash << 'EOF'
+            if [ "${{ github.ref_name }}" = "main" ]; then
+              DEPLOY_DIR="/var/www/frontend-production"
+              APP_NAME="production"
+              PORT=3000
+            else
+              DEPLOY_DIR="/var/www/frontend-staging"
+              APP_NAME="staging"
+              PORT=3001
+            fi
+
+            mkdir -p $DEPLOY_DIR
+            tar -xzf ~/frontend-build-artifacts/boilerplate.tar.gz -C $DEPLOY_DIR
+
+            cd $DEPLOY_DIR
+
+            pm2 restart $APP_NAME || PORT=$PORT pm2 start server.js --name "$APP_NAME"
+
+            pm2 save
+          EOF
+
+      - name: Clean up local artifact
+        run: rm -f boilerplate.tar.gz

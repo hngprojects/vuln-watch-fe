@@ -1,41 +1,27 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Figtree } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
-import { env } from "@/env/client";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { cn } from '~/utils'
+import { Providers } from './provider'
 
-const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: {
-    default: env.NEXT_PUBLIC_APP_NAME,
-    template: `%s · ${env.NEXT_PUBLIC_APP_NAME}`,
-  },
-  description: `${env.NEXT_PUBLIC_APP_NAME} — a Next.js 16 starter.`,
-};
+  title: 'FlowBrand — Guided Marketing Funnel Wizard',
+  description:
+    'FlowBrand helps small businesses build and run a personalised marketing funnel in minutes — no marketing knowledge required.',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(inter.className, 'max-w-[1920px] antialiased')}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
-  );
+  )
 }
