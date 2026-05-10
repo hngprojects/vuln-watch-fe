@@ -1,33 +1,53 @@
-import { NextResponse, type NextProxy } from "next/server";
+import { NextRequest, NextResponse } from 'next/server'
+import { apiAuthPrefix } from '~/routes'
+import { getSubdomain, ROOT_DOMAIN } from './utils'
 
-const SECURITY_HEADERS: Record<string, string> = {
-  "X-Frame-Options": "DENY",
-  "X-Content-Type-Options": "nosniff",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-};
+export default async function proxy(request: NextRequest) {
+  const { nextUrl } = request
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
+  const url = nextUrl
+  let hostname = request.headers
+    .get('host')!
+    .replace(/\.localhost(:\d+)?/, `.${ROOT_DOMAIN}`)
+  hostname = hostname.replace('www.', '')
+  const searchParams = request.nextUrl.searchParams.toString()
+  const path = `${url.pathname}${
+    searchParams.length > 0 ? `?${searchParams}` : ''
+  }`
+  const subdomain = getSubdomain(hostname, ROOT_DOMAIN)
 
-export const proxy: NextProxy = (request) => {
-  const requestId =
-    request.headers.get("x-request-id") ?? crypto.randomUUID();
+  console.log('++++++++++++++++++++++++++++++++++++')
+  console.log('HOSTNAME: ', hostname)
+  console.log('SUBDOMAIN:', subdomain)
+  console.log('PATHNAME: ', url.pathname)
+  console.log('PATH: ', path)
+  console.log('++++++++++++++++++++++++++++++++++++')
 
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-request-id", requestId);
+  if (isApiAuthRoute) return null
 
-  const response = NextResponse.next({
-    request: { headers: requestHeaders },
-  });
-
-  for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
-    response.headers.set(key, value);
+  if (hostname == `nestjs.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/nestjs${path === '/' ? '/' : path}`, request.url)
+    )
   }
-  response.headers.set("x-request-id", requestId);
-
-  return response;
-};
+  if (hostname == `php.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/php${path === '/' ? '/' : path}`, request.url)
+    )
+  }
+  if (hostname == `go.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/go${path === '/' ? '/' : path}`, request.url)
+    )
+  }
+  if (hostname == `python-fastapi.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/python${path === '/' ? '/' : path}`, request.url)
+    )
+  }
+  return
+}
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot)$).*)",
-  ],
-};
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+}
