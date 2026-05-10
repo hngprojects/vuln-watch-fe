@@ -88,7 +88,7 @@ function DesktopScanForm() {
       {/* Right: Scan button */}
       <button
         type="button"
-        className="flex items-center justify-center rounded transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        className="flex cursor-pointer items-center justify-center rounded transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
         style={{
           width: '83px',
           height: '46px',

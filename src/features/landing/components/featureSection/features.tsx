@@ -4,7 +4,7 @@ import { FeaturesData } from '~/features/landing/constants/featureSection'
 
 export default function Features() {
   return (
-    <div className="bg-white pb-10">
+    <div className="bg-white py-10 sm:py-24">
       <div className="mx-auto max-w-[1200px]">
         <div className="flex flex-col items-center py-5 text-center">
           <span className="mb-3 rounded-md bg-[#FAFAFA] px-4 py-2.5 sm:mb-4 md:mb-5">
