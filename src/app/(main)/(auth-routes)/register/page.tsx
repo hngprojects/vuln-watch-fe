@@ -1,8 +1,8 @@
 import React from 'react'
-import Login from '~/components/auth/login'
+import { SignUpForm } from '~/components/auth'
 
 const page = () => {
-  return <Login />
+  return <SignUpForm />
 }
 
 export default page
