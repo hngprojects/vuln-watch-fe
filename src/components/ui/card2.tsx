@@ -1,32 +1,16 @@
-import { cva } from 'class-variance-authority'
 import * as React from 'react'
 import { cn } from '~/utils'
 
-const cardVariants = cva(
-  'rounded-xl border border-neutral-200 bg-card text-card-foreground bg-white',
-  {
-    variants: {
-      variant: {
-        default: 'bg-white',
-        outline: 'border-neutral-200 bg-white',
-        neutral: 'bg-neutral-50',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-)
-
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    variant?: 'default' | 'outline' | 'neutral'
-  }
->(({ className, variant, ...properties }, reference) => (
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...properties }, reference) => (
   <div
     ref={reference}
-    className={cn(cardVariants({ variant }), className)}
+    className={cn(
+      'bg-card text-card-foreground rounded-lg border shadow-sm',
+      className
+    )}
     {...properties}
   />
 ))
@@ -75,7 +59,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...properties }, reference) => (
-  <div ref={reference} className={cn('px-4 py-5', className)} {...properties} />
+  <div ref={reference} className={cn('p-6 pt-0', className)} {...properties} />
 ))
 CardContent.displayName = 'CardContent'
 
