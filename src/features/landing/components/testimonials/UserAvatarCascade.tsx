@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import { images } from '../constants/images'
+import { images } from '~/features/landing/constants/images'
 
 function UserAvatarCascade() {
   return (
     <div className="flex shrink-0 items-center">
-      <div className="flex items-center [&>*]:-ml-3 [&>*:first-child]:ml-0">
+      <div className="flex items-center *:-ml-3 [&>*:first-child]:ml-0">
         {images.userAvatars.map((srcPath) => (
           <UserAvatar key={srcPath} imageSrc={srcPath} />
         ))}

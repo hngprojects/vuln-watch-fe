@@ -1,8 +1,8 @@
 import { Card, CardContent } from '~/components/ui/card'
-import UserAvatarCascade from '../UserAvatarCascade'
 import FaqAccordion from './FaqAccordion'
 import { FAQS_DATA } from '~/features/landing/constants/faqs'
 import { Button } from './ui/button'
+import UserAvatarCascade from '../testimonials/UserAvatarCascade'
 
 const FAQs = () => {
   return (
