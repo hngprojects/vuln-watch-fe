@@ -1,17 +1,29 @@
 import FAQs from '~/features/landing/components/faqs/Faqs'
+import Features from '~/features/landing/components/featureSection/features'
 import { Hero } from '~/features/landing/components/hero/Hero'
 import Testimonials from '~/features/landing/components/testimonials/Testimonials'
 import HowItWorks from '~/features/landing/components/how-it-works/HowItWorks'
 import { TrustTransparency } from '~/features/landing/components/trustTransparency/TrustTransparency'
 import PricingSection from '~/features/landing/components/pricing-section'
 
+// order in page -
+// hero,
+// feature section,
+// how it works,
+// why choose us section,
+// pricing section,
+// testimonials,
+// FAQ,
+// trust and transparency (cta section)
+
 export default function Home() {
   return (
     <>
       <Hero />
+      <Features />
+      <HowItWorks />
       <Testimonials />
       <FAQs />
-      <HowItWorks />
       <PricingSection />
       <TrustTransparency />
     </>
