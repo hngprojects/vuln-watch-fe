@@ -1,5 +1,9 @@
 import { z } from 'zod'
-import { signUpSchema, loginSchema, forgotPasswordSchema } from '~/schemas/auth.schema'
+import {
+  signUpSchema,
+  loginSchema,
+  forgotPasswordSchema,
+} from '~/schemas/auth.schema'
 
 export type SignUpFormData = z.infer<typeof signUpSchema>
 export type LoginFormData = z.infer<typeof loginSchema>

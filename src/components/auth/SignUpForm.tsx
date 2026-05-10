@@ -34,7 +34,7 @@ export function SignUpForm() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-[#FAFAFA] px-4 py-8 sm:px-6 lg:px-8">
       {/* Top Left Logo */}
-      <div className="w-full max-w-[1200px] mb-8">
+      <div className="mb-8 w-full max-w-[1200px]">
         <Link href="/">
           <Image
             src="/images/logo-auth.png"
@@ -103,12 +103,12 @@ export function SignUpForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="font-geist flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#C68A00] px-6 py-4 text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#FFFFFF] transition-opacity hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+                className="font-geist flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#C68A00] px-6 py-4 text-[16px] leading-[24px] font-medium tracking-[0.02em] text-[#FFFFFF] transition-opacity hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 Sign Up
               </button>
 
-              <p className="font-geist text-center text-[16px] font-normal leading-[24px] text-[#3D4947]">
+              <p className="font-geist text-center text-[16px] leading-[24px] font-normal text-[#3D4947]">
                 Already have an account?{' '}
                 <Link
                   href="/login"

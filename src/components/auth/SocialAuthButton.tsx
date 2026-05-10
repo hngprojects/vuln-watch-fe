@@ -4,7 +4,9 @@ interface SocialAuthButtonProps {
   text?: string
 }
 
-export function SocialAuthButton({ text = 'Sign up with Google' }: SocialAuthButtonProps) {
+export function SocialAuthButton({
+  text = 'Sign up with Google',
+}: SocialAuthButtonProps) {
   return (
     <button
       type="button"
@@ -34,7 +36,7 @@ export function SocialAuthButton({ text = 'Sign up with Google' }: SocialAuthBut
           fill="#EA4335"
         />
       </svg>
-      <span className="font-geist text-[16px] font-normal leading-none tracking-[-0.01em] text-[#2D2D2D]">
+      <span className="font-geist text-[16px] leading-none font-normal tracking-[-0.01em] text-[#2D2D2D]">
         {text}
       </span>
     </button>

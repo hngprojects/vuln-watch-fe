@@ -20,7 +20,7 @@ export const AuthInput = forwardRef<HTMLInputElement, AuthInputProps>(
       <div className="flex w-full flex-col gap-2">
         <label
           htmlFor={inputId}
-          className="font-geist text-[17px] font-medium leading-[20px] tracking-[0.5px] text-[#2B2B2BCC]"
+          className="font-geist text-[17px] leading-[20px] font-medium tracking-[0.5px] text-[#2B2B2BCC]"
         >
           {label}
         </label>
@@ -34,7 +34,7 @@ export const AuthInput = forwardRef<HTMLInputElement, AuthInputProps>(
             id={inputId}
             ref={ref}
             className={cn(
-              'font-geist flex h-[50px] w-full rounded-lg border bg-transparent px-4 py-2 text-[16px] text-[#2B2B2B] shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#666666B2] focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50',
+              'font-geist flex h-[50px] w-full rounded-lg border bg-transparent px-4 py-2 text-[16px] text-[#2B2B2B] shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#666666B2] focus-visible:ring-1 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
               icon ? 'pl-11' : '',
               rightElement ? 'pr-11' : '',
               error
@@ -68,7 +68,7 @@ export const AuthInput = forwardRef<HTMLInputElement, AuthInputProps>(
         ) : helperText ? (
           <p
             id={`${inputId}-helper`}
-            className="font-geist text-[15px] font-normal leading-[24px] text-[#666666]"
+            className="font-geist text-[15px] leading-[24px] font-normal text-[#666666]"
           >
             {helperText}
           </p>

@@ -41,7 +41,7 @@ export function ForgotPasswordForm() {
               priority
             />
           </div>
-          <h1 className="font-geist mb-2 text-center text-[24px] font-semibold leading-tight tracking-[0.5px] text-[#000000] sm:text-[28px]">
+          <h1 className="font-geist mb-2 text-center text-[24px] leading-tight font-semibold tracking-[0.5px] text-[#000000] sm:text-[28px]">
             Forgot Password
           </h1>
           <p className="font-geist max-w-[320px] text-center text-[14px] font-normal text-[#666666] sm:text-[15px]">
@@ -67,7 +67,7 @@ export function ForgotPasswordForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="font-geist flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#C68A00] px-6 py-4 text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#FFFFFF] transition-opacity hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+              className="font-geist flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#C68A00] px-6 py-4 text-[16px] leading-[24px] font-medium tracking-[0.02em] text-[#FFFFFF] transition-opacity hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
             >
               Send Reset Link
             </button>

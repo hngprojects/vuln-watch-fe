@@ -84,12 +84,12 @@ export function LoginForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="font-geist flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#C68A00] px-6 py-4 text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#FFFFFF] transition-opacity hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+              className="font-geist flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#C68A00] px-6 py-4 text-[16px] leading-[24px] font-medium tracking-[0.02em] text-[#FFFFFF] transition-opacity hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
             >
               Sign In
             </button>
 
-            <p className="font-geist text-center text-[14px] font-normal leading-[24px] text-[#3D4947]">
+            <p className="font-geist text-center text-[14px] leading-[24px] font-normal text-[#3D4947]">
               Already have an Account?{' '}
               <Link
                 href="/register"
