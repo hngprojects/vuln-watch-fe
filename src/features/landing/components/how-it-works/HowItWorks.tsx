@@ -80,7 +80,7 @@ const HowItWorks = () => {
               </div>
 
               {/* Desktop */}
-              <div className="hidden items-end md:flex ">
+              <div className="hidden items-end md:flex">
                 {step.imageLeft ? (
                   <>
                     <div className="relative z-10 mr-[-15px] h-[330px] w-[440px] shrink-0 self-end overflow-hidden rounded-[24px] border-[5px] border-cards bg-cards shadow-lg">
@@ -92,7 +92,7 @@ const HowItWorks = () => {
                         sizes="440px"
                       />
                     </div>
-                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col gap-6 justify-center rounded-br-[40px] rounded-tr-[40px] bg-secondary p-12">
+                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-br-[40px] rounded-tr-[40px] bg-secondary p-12">
                       <div>
                         <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
                         <p className="max-w-[380px] text-base leading-relaxed text-header">
@@ -106,7 +106,7 @@ const HowItWorks = () => {
                   </>
                 ) : (
                   <>
-                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col gap-6 justify-center rounded-bl-[40px] rounded-tl-[40px] bg-secondary p-12">
+                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-bl-[40px] rounded-tl-[40px] bg-secondary p-12">
                       <div>
                         <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
                         <p className="max-w-[380px] text-base leading-relaxed text-header">
