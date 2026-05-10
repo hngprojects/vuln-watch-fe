@@ -1,5 +1,6 @@
 'use client'
 
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import {
   QueryClient,
   QueryClientProvider,
@@ -43,19 +44,24 @@ const MINUTE = 1000 * 60
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient()
+  const googleClientId =
+    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+    'dummy-client-id.apps.googleusercontent.com'
 
   return (
-    <SessionProvider>
-      <QueryClientProvider client={queryClient}>
-        <ProgressBar
-          style="style"
-          options={{ showSpinner: false }}
-          shallowRouting
-        />
-        <ReactLenis root>{children}</ReactLenis>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <Sonner richColors expand={true} position="top-right" />
-      </QueryClientProvider>
-    </SessionProvider>
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          <ProgressBar
+            style="style"
+            options={{ showSpinner: false }}
+            shallowRouting
+          />
+          <ReactLenis root>{children}</ReactLenis>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <Sonner richColors expand={true} position="top-right" />
+        </QueryClientProvider>
+      </SessionProvider>
+    </GoogleOAuthProvider>
   )
 }

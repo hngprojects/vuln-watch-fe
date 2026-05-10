@@ -1,4 +1,3 @@
-import React from 'react'
 import { ForgotPasswordForm } from '~/components/auth'
 
 export default function ForgotPasswordPage() {

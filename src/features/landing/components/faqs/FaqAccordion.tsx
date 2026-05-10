@@ -31,7 +31,12 @@ const FaqAccordion = ({
         containerClassName
       )}
     >
-      <Accordion type="single" collapsible className="w-full space-y-4">
+      <Accordion
+        type="single"
+        collapsible
+        defaultValue="item-0"
+        className="w-full space-y-4"
+      >
         {faqs?.map((faq, index) => {
           const isClickable = !!faq.question && !!faq.answer
 
