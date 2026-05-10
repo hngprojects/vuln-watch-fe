@@ -37,13 +37,13 @@ const HowItWorks = () => {
       <div className="mx-auto max-w-[1440px] px-5 md:px-20">
         {/* Header */}
         <div className="mb-14 flex flex-col items-center text-center">
-          <span className="mb-8 inline-block rounded-lg border border-header bg-cards px-4 py-1 text-sm font-medium text-header">
+          <span className="border-header bg-cards text-header mb-8 inline-block rounded-lg border px-4 py-1 text-sm font-medium">
             How It Works
           </span>
-          <h2 className="max-w-[617px] text-3xl font-bold leading-tight tracking-[-0.02em] text-header sm:text-4xl md:text-[44px]">
+          <h2 className="text-header max-w-[617px] text-3xl leading-tight font-bold tracking-[-0.02em] sm:text-4xl md:text-[44px]">
             Three (3) steps from Curious to Confident
           </h2>
-          <p className="mt-4 max-w-[555px] text-lg font-normal text-body">
+          <p className="text-body mt-4 max-w-[555px] text-lg font-normal">
             No installs, no agents, no access to your hosting account. Just a
             domain and a minute of your time.
           </p>
@@ -56,12 +56,12 @@ const HowItWorks = () => {
               key={step.id}
               className={cn(
                 'flex justify-center',
-                index === 1 && 'md:-translate-x-35',
+                index === 1 && 'md:-translate-x-35'
               )}
             >
               {/* Mobile */}
               <div className="flex w-full flex-col md:hidden">
-                <div className="relative h-[220px] overflow-hidden rounded-t-[24px] bg-cards">
+                <div className="bg-cards relative h-[220px] overflow-hidden rounded-t-[24px]">
                   <Image
                     src={step.image}
                     alt={step.alt}
@@ -70,10 +70,14 @@ const HowItWorks = () => {
                     sizes="100vw"
                   />
                 </div>
-                <div className="flex flex-col gap-3 rounded-b-3xl bg-secondary px-6 py-5">
-                  <h3 className="text-xl font-bold text-header">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-header">{step.description}</p>
-                  <span className="mt-1 block text-5xl font-bold leading-none text-header">
+                <div className="bg-secondary flex flex-col gap-3 rounded-b-3xl px-6 py-5">
+                  <h3 className="text-header text-xl font-bold">
+                    {step.title}
+                  </h3>
+                  <p className="text-header text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                  <span className="text-header mt-1 block text-5xl leading-none font-bold">
                     {step.id}
                   </span>
                 </div>
@@ -83,7 +87,7 @@ const HowItWorks = () => {
               <div className="hidden items-end md:flex">
                 {step.imageLeft ? (
                   <>
-                    <div className="relative z-10 mr-[-15px] h-[330px] w-[440px] shrink-0 self-end overflow-hidden rounded-[24px] border-[5px] border-cards bg-cards shadow-lg">
+                    <div className="border-cards bg-cards relative z-10 mr-[-15px] h-[330px] w-[440px] shrink-0 self-end overflow-hidden rounded-[24px] border-[5px] shadow-lg">
                       <Image
                         src={step.image}
                         alt={step.alt}
@@ -92,32 +96,36 @@ const HowItWorks = () => {
                         sizes="440px"
                       />
                     </div>
-                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-br-[40px] rounded-tr-[40px] bg-secondary p-12">
+                    <div className="bg-secondary relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-tr-[40px] rounded-br-[40px] p-12">
                       <div>
-                        <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
-                        <p className="max-w-[380px] text-base leading-relaxed text-header">
+                        <h3 className="text-header mb-2 text-2xl font-bold">
+                          {step.title}
+                        </h3>
+                        <p className="text-header max-w-[380px] text-base leading-relaxed">
                           {step.description}
                         </p>
                       </div>
-                      <span className="block text-7xl font-bold leading-none text-header">
+                      <span className="text-header block text-7xl leading-none font-bold">
                         {step.id}
                       </span>
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-bl-[40px] rounded-tl-[40px] bg-secondary p-12">
+                    <div className="bg-secondary relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-tl-[40px] rounded-bl-[40px] p-12">
                       <div>
-                        <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
-                        <p className="max-w-[380px] text-base leading-relaxed text-header">
+                        <h3 className="text-header mb-2 text-2xl font-bold">
+                          {step.title}
+                        </h3>
+                        <p className="text-header max-w-[380px] text-base leading-relaxed">
                           {step.description}
                         </p>
                       </div>
-                      <span className="block text-7xl font-bold leading-none text-header">
+                      <span className="text-header block text-7xl leading-none font-bold">
                         {step.id}
                       </span>
                     </div>
-                    <div className="relative z-10 ml-[-15px] h-[330px] w-[440px] shrink-0 self-end overflow-hidden rounded-[24px] border-[5px] border-cards bg-cards shadow-lg">
+                    <div className="border-cards bg-cards relative z-10 ml-[-15px] h-[330px] w-[440px] shrink-0 self-end overflow-hidden rounded-[24px] border-[5px] shadow-lg">
                       <Image
                         src={step.image}
                         alt={step.alt}
