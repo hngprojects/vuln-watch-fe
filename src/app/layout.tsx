@@ -1,15 +1,18 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Geist } from 'next/font/google'
 import './globals.css'
 import { cn } from '~/utils'
 import { Providers } from './provider'
 
-const inter = Inter({ subsets: ['latin'] })
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist',
+})
 
 export const metadata: Metadata = {
-  title: 'FlowBrand — Guided Marketing Funnel Wizard',
+  title: 'VulnWatch AI — Intelligent Vulnerability Detection',
   description:
-    'FlowBrand helps small businesses build and run a personalised marketing funnel in minutes — no marketing knowledge required.',
+    'VulnWatch AI helps security teams detect, track, and remediate vulnerabilities faster with AI-powered scanning and real-time alerts.',
 }
 
 export default function RootLayout({
@@ -19,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(inter.className, 'mx-auto max-w-[1920px] antialiased')}
-      >
+      <body className={cn(geist.variable, 'mx-auto max-w-480 antialiased')}>
         <Providers>{children}</Providers>
       </body>
     </html>
