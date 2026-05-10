@@ -13,19 +13,19 @@ const WhyChoose: React.FC = () => {
         'Expiring SSL certificate, misconfigured DNS and exposed admin pages can break your site & lead to loss of customer trust overnight. Vulnwatch flags these before they become incidents.',
     },
     {
-      title: 'Catch Problems Before Customers Do',
+      title: 'Prioritize the Risks That Matter',
       description:
-        'Expiring SSL certificate, misconfigured DNS and exposed admin pages can break your site & lead to loss of customer trust overnight. Vulnwatch flags these before they become incidents.',
+        'VulnWatch AI helps teams cut through noisy scan results by highlighting the vulnerabilities most likely to affect real users and critical systems.',
     },
     {
-      title: 'Catch Problems Before Customers Do',
+      title: 'Move Faster With AI-Assisted Triage',
       description:
-        'Expiring SSL certificate, misconfigured DNS and exposed admin pages can break your site & lead to loss of customer trust overnight. Vulnwatch flags these before they become incidents.',
+        'Get clearer explanations, severity context, and suggested next steps so developers can understand security issues quickly and fix them with less back-and-forth.',
     },
     {
-      title: 'Catch Problems Before Customers Do',
+      title: 'Stay Ahead of Emerging Threats',
       description:
-        'Expiring SSL certificate, misconfigured DNS and exposed admin pages can break your site & lead to loss of customer trust overnight. Vulnwatch flags these before they become incidents.',
+        'Track new vulnerabilities and security signals in one place, helping your team respond early before small issues become production incidents.',
     },
   ]
 
