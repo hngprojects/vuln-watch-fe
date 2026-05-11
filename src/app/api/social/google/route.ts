@@ -20,13 +20,15 @@ interface Organisation {
 }
 
 interface LoginResponse {
-  status_code: number
-  message: string
-  access_token: string
-  data: {
-    user: User
-    organisations: Organisation[]
-  }
+  isSuccess: boolean
+  value: {
+    token: string
+    email: string
+  } | null
+  error: {
+    code: string
+    message: string
+  } | null
 }
 
 export async function POST(request: NextRequest) {
@@ -53,14 +55,14 @@ export async function POST(request: NextRequest) {
   try {
     const res = await api<LoginResponse>('/auth/google', {
       method: 'POST',
-      body: { id_token: id_token },
+      body: { IdToken: id_token, id_token: id_token, idToken: id_token }, // Sending all variations to be safe
     })
 
     console.log(res, 'response')
 
     return NextResponse.json({
-      data: res.data.user,
-      access_token: res.access_token,
+      token: res.value?.token,
+      email: res.value?.email,
       success: true,
     })
   } catch (error) {
