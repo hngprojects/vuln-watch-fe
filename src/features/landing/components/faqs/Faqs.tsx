@@ -6,9 +6,9 @@ import UserAvatarCascade from '../testimonials/UserAvatarCascade'
 
 const FAQs = () => {
   return (
-    <section className="w-full bg-white py-[96px]">
-      <div className="wrapper">
-        <div className="grid items-center gap-16 rounded-2xl bg-[#FAFAFA] p-8 sm:p-10 md:grid-cols-[min-content_1fr] md:rounded-4xl md:p-14">
+    <section className="w-full bg-white py-12 md:py-24">
+      <div className="mx-auto max-w-[1280px] md:px-6 lg:px-8">
+        <div className="grid items-center gap-16 bg-[#FAFAFA] px-4 py-10 sm:px-6 md:grid-cols-[min-content_1fr] md:rounded-4xl md:p-14">
           <div className="space-y-12">
             <div className="space-y-4">
               <h1 className="mb-2 text-4xl font-semibold text-[#2b2b2b] md:text-[40px]">

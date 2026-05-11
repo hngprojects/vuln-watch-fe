@@ -8,7 +8,7 @@ const row2Testimonials = [...TESTIMONIALS.slice(4), ...TESTIMONIALS.slice(0, 4)]
 
 const Testimonials = () => {
   return (
-    <section className="space-y-12 overflow-x-hidden bg-white py-24">
+    <section className="space-y-12 overflow-x-hidden bg-white py-12 md:py-24">
       <div className="mx-auto max-w-xl space-y-4 px-5 text-center">
         <Card
           variant="neutral"
