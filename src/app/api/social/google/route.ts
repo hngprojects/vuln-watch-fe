@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
   try {
     const res = await api<LoginResponse>('/auth/google', {
       method: 'POST',
-      body: { id_token: id_token },
+      body: { IdToken: id_token, id_token: id_token, idToken: id_token }, // Sending all variations to be safe
     })
 
     console.log(res, 'response')

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { useGoogleLogin } from '@react-oauth/google'
+import { toast } from 'sonner'
 
 interface SocialAuthButtonProps {
   text?: string
@@ -18,32 +19,32 @@ export function SocialAuthButton({
         setIsLoading(true)
         console.log('Google Token Received:', tokenResponse)
 
-        // This is the implementation we will use once the Client ID is ready
-        /*
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/google`, {
+        const response = await fetch('/api/social/google', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-API-Version': '1'
           },
-          body: JSON.stringify({ token: tokenResponse.access_token })
+          body: JSON.stringify({ id_token: tokenResponse.access_token })
         })
         
         const data = await response.json()
-        if (data.isSuccess) {
-           // Save data.value.token to cookies
-           // Save data.value.email to Zustand store
+        if (data.success) {
+           toast.success('Google login successful!')
         } else {
-           console.error('Backend rejected token:', data.error)
+           toast.error(data.message || 'Backend rejected token')
+           console.error('Backend rejected token:', data)
         }
-        */
       } catch (error) {
+        toast.error('Google login failed. Please try again.')
         console.error('Google login failed:', error)
       } finally {
         setIsLoading(false)
       }
     },
-    onError: (error) => console.log('Google Login Failed:', error),
+    onError: (error) => {
+      toast.error('Google Login Failed')
+      console.log('Google Login Failed:', error)
+    },
   })
 
   return (
