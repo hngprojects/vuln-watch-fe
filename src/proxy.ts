@@ -16,6 +16,14 @@ export default async function proxy(request: NextRequest) {
   }`
   const subdomain = getSubdomain(hostname, ROOT_DOMAIN)
 
+  // Auth protection for dashboard routes
+  const isProtectedRoute = url.pathname.startsWith('/dashboard')
+  const authToken = request.cookies.get('auth_token')?.value
+
+  if (isProtectedRoute && !authToken) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
   console.log('++++++++++++++++++++++++++++++++++++')
   console.log('HOSTNAME: ', hostname)
   console.log('SUBDOMAIN:', subdomain)

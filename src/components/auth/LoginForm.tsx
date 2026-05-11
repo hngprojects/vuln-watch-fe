@@ -12,6 +12,7 @@ import { authService } from '~/services/auth.service'
 
 import { loginSchema } from '~/schemas/auth.schema'
 import type { LoginFormData } from '~/types/auth.types'
+import { useAuthStore } from '~/store/auth.store'
 
 import { AuthCard } from './AuthCard'
 import { AuthInput } from './AuthInput'
@@ -35,9 +36,9 @@ export function LoginForm() {
     try {
       const response = await authService.login(data)
 
-      if (response.isSuccess) {
+      if (response.isSuccess && response.value) {
         toast.success('Successfully logged in!')
-        // In a real app, save token to Zustand/Cookies here
+        useAuthStore.getState().login(response.value.token, response.value.email)
         router.push('/dashboard') // Or wherever the protected route is
       } else {
         toast.error(response.error?.message || 'Login failed')
