@@ -1,11 +1,16 @@
 name: Build, Lint and Test
 
 on:
-  pull_request
+  pull_request:
+    branches: [staging, main]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build_lint_test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout code
@@ -25,7 +30,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '24'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -37,6 +42,15 @@ jobs:
 
       - name: Lint code
         run: pnpm lint
+
+      - name: Type check
+        run: pnpm check-types
+
+      - name: Set dummy env for build check
+        run: |
+          echo "NEXT_PUBLIC_GOOGLE_CLIENT_ID=dummy-client-id.apps.googleusercontent.com" >> .env.local
+          echo "NEXT_PUBLIC_APP_URL=https://staging.vuln-watch.hng14.com" >> .env.local
+          echo "API_BASE_URL=https://api.staging.vuln-watch.hng14.com" >> .env.local
 
       - name: Build project
         run: pnpm build

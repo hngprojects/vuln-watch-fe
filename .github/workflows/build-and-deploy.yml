@@ -4,15 +4,20 @@ on:
   push:
     branches: [staging, main]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    environment:
+      name: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     env:
       HOST: ${{ secrets.HOST }}
       USERNAME: ${{ secrets.USERNAME }}
-      PASSWORD: ${{ secrets.PASSWORD }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +36,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '24'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -40,6 +45,24 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Enforce Code Quality (Lint)
+        run: pnpm lint
+
+      - name: Enforce Type Safety (Check-Types)
+        run: pnpm check-types
+
+      - name: Set environment variables for build
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}" >> .env.local
+            echo "NEXT_PUBLIC_APP_URL=https://vuln-watch.hng14.com" >> .env.local
+            echo "API_BASE_URL=https://api.vuln-watch.hng14.com" >> .env.local
+          else
+            echo "NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}" >> .env.local
+            echo "NEXT_PUBLIC_APP_URL=https://staging.vuln-watch.hng14.com" >> .env.local
+            echo "API_BASE_URL=https://api.staging.vuln-watch.hng14.com" >> .env.local
+          fi
 
       - name: Build Next.js application
         run: pnpm build
@@ -53,38 +76,38 @@ jobs:
         run: |
           cd .next/standalone
           tar -czf ../../boilerplate.tar.gz .
-          cd ../../
-
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
 
       - name: Copy artifacts to server
-        run: |
-          sshpass -p "$PASSWORD" scp -o StrictHostKeyChecking=no \
-            boilerplate.tar.gz "$USERNAME@$HOST:~/frontend-build-artifacts/"
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: boilerplate.tar.gz
+          target: ~/frontend-build-artifacts/
 
       - name: Deploy on server
-        run: |
-          sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$USERNAME@$HOST" bash << 'EOF'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
             if [ "${{ github.ref_name }}" = "main" ]; then
               DEPLOY_DIR="/var/www/frontend-production"
-              APP_NAME="production"
-              PORT=3000
+              APP_NAME="frontend-production"
+              PORT=3001
             else
               DEPLOY_DIR="/var/www/frontend-staging"
-              APP_NAME="staging"
-              PORT=3001
+              APP_NAME="frontend-staging"
+              PORT=3000
             fi
-
             mkdir -p $DEPLOY_DIR
+            mkdir -p ~/frontend-build-artifacts
             tar -xzf ~/frontend-build-artifacts/boilerplate.tar.gz -C $DEPLOY_DIR
-
             cd $DEPLOY_DIR
-
             pm2 restart $APP_NAME || PORT=$PORT pm2 start server.js --name "$APP_NAME"
-
             pm2 save
-          EOF
 
       - name: Clean up local artifact
         run: rm -f boilerplate.tar.gz
