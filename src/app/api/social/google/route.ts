@@ -3,22 +3,6 @@ import { envConfig } from '~/config/env.config'
 import { createFetchUtil, HttpError } from '~/actions/fetchutil'
 import { z } from 'zod'
 
-interface User {
-  id: string
-  email: string
-  first_name: string
-  last_name: string
-  avatar_url: string | null
-  is_superadmin: boolean
-}
-
-interface Organisation {
-  organisation_id: string
-  name: string
-  user_role: string
-  is_owner: boolean
-}
-
 interface LoginResponse {
   isSuccess: boolean
   value: {

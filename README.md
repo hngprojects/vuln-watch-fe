@@ -1,4 +1,101 @@
-# Next.js Starter
+# VulnWatch FE
+
+VulnWatch AI — Enterprise vulnerability intelligence platform. Built with Next.js 16, React 19, TypeScript, and Tailwind v4.
+
+## Stack
+
+- **Next.js 16** App Router with Turbopack
+- **React 19**, **TypeScript** (strict)
+- **Tailwind v4** with shadcn `radix-maia` style
+- **Zustand** for client state management
+- **React Query (@tanstack/react-query)** for server state
+- **Zod** for form and env validation
+- **@react-oauth/google** for Google OAuth
+- **Sonner** for toast notifications
+
+## Getting Started
+
+```bash
+pnpm install
+cp .env.example .env.local   # fill in values
+pnpm dev
+```
+
+Open <http://localhost:3000>.
+
+## Scripts
+
+| Command          | What it does                     |
+| ---------------- | -------------------------------- |
+| `pnpm dev`       | Dev server (Turbopack)           |
+| `pnpm build`     | Production build                 |
+| `pnpm start`     | Run the production build         |
+| `pnpm lint`      | ESLint                           |
+| `pnpm typecheck` | `tsc --noEmit`                   |
+
+## Environment Variables
+
+Create a `.env.local` file in the root with the following:
+
+| Variable                        | Description                                      |
+| ------------------------------- | ------------------------------------------------ |
+| `NEXT_PUBLIC_API_URL`           | Backend staging API base URL                     |
+| `NEXT_PUBLIC_GOOGLE_CLIENT_ID`  | Google OAuth Client ID                           |
+| `BASE_URL`                      | Server-side backend base URL (with `/api` path)  |
+| `AUTH_SECRET`                   | Secret for NextAuth session signing              |
+
+Example `.env.local`:
+```env
+NEXT_PUBLIC_API_URL=https://api.staging.vuln-watch.hng14.com
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+BASE_URL=https://api.staging.vuln-watch.hng14.com/api
+AUTH_SECRET=your-secret-key
+```
+
+## Authentication
+
+- **Email/Password**: Login, Register, and Forgot Password forms are implemented and connected to the backend API via server-side proxy routes to avoid CORS issues.
+- **Google OAuth**: Implemented using `GoogleLogin` from `@react-oauth/google`. The Google ID token is sent to the backend at `POST /api/auth/google` via the internal Next.js route `/api/social/google`.
+
+## API Proxy Routes
+
+To bypass CORS during development and production, all auth API calls are routed through Next.js server-side API routes:
+
+| Frontend Route              | Proxies To                          |
+| --------------------------- | ----------------------------------- |
+| `POST /api/proxy/login`     | `POST /api/auth/login` (backend)    |
+| `POST /api/proxy/register`  | `POST /api/auth/register` (backend) |
+| `POST /api/proxy/forgot-password` | `POST /api/auth/forgot-password` (backend) |
+| `POST /api/social/google`   | `POST /api/auth/google` (backend)   |
+
+## Project Structure
+
+```
+src/
+├── app/                        # App Router routes & pages
+│   ├── (main)/
+│   │   ├── (landing-routes)/   # Landing page
+│   │   └── (auth-routes)/      # Login, Register, Forgot Password
+│   └── api/
+│       ├── proxy/              # CORS proxy routes for auth
+│       └── social/google/      # Google OAuth proxy route
+├── components/
+│   ├── auth/                   # Auth form components
+│   └── ui/                     # shadcn UI components
+├── features/
+│   └── landing/                # Landing page sections (Hero, FAQs, Testimonials, etc.)
+├── schemas/                    # Zod validation schemas
+├── services/                   # API service layer
+├── types/                      # TypeScript type definitions
+└── config/                     # Environment config
+```
+
+## Links
+
+- **Staging:** https://staging.vuln-watch.hng14.com
+- **Production:** https://vuln-watch.hng14.com
+- **API Docs:** https://api.staging.vuln-watch.hng14.com/docs
+
 
 Next.js 16 + React 19 + Tailwind v4 + shadcn (radix-maia). Validated env, typed proxy, and the standard set of route conventions wired up.
 
