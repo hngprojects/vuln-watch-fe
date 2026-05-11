@@ -33,106 +33,104 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="overflow-x-hidden bg-[#F1FCEA] pt-16 md:pt-24">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-20">
-        {/* Header */}
-        <div className="mb-14 flex flex-col items-center text-center">
-          <span className="mb-8 inline-block rounded-lg border border-header bg-cards px-4 py-1 text-sm font-medium text-header">
-            How It Works
-          </span>
-          <h2 className="max-w-[617px] text-3xl font-bold leading-tight tracking-[-0.02em] text-header sm:text-4xl md:text-[44px]">
-            Three (3) steps from Curious to Confident
-          </h2>
-          <p className="mt-4 max-w-[555px] text-lg font-normal text-body">
-            No installs, no agents, no access to your hosting account. Just a
-            domain and a minute of your time.
-          </p>
-        </div>
-
-        {/* Steps */}
-        <div className="mx-auto flex max-w-[1100px] flex-col">
-          {steps.map((step, index) => (
-            <div
-              key={step.id}
-              className={cn(
-                'flex justify-center',
-                index === 1 && 'md:-translate-x-35',
-              )}
-            >
-              {/* Mobile */}
-              <div className="flex w-full flex-col md:hidden">
-                <div className="relative h-[220px] overflow-hidden rounded-t-[24px] bg-cards">
-                  <Image
-                    src={step.image}
-                    alt={step.alt}
-                    fill
-                    className="object-cover object-top"
-                    sizes="100vw"
-                  />
-                </div>
-                <div className="flex flex-col gap-3 rounded-b-3xl bg-secondary px-6 py-5">
-                  <h3 className="text-xl font-bold text-header">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-header">{step.description}</p>
-                  <span className="mt-1 block text-5xl font-bold leading-none text-header">
-                    {step.id}
-                  </span>
-                </div>
-              </div>
-
-              {/* Desktop */}
-              <div className="hidden items-end md:flex">
-                {step.imageLeft ? (
-                  <>
-                    <div className="relative z-10 mr-[-15px] h-[330px] w-[440px] shrink-0 self-end overflow-hidden rounded-[24px] border-[5px] border-cards bg-cards shadow-lg">
-                      <Image
-                        src={step.image}
-                        alt={step.alt}
-                        fill
-                        className="object-cover object-top"
-                        sizes="440px"
-                      />
-                    </div>
-                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-br-[40px] rounded-tr-[40px] bg-secondary p-12">
-                      <div>
-                        <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
-                        <p className="max-w-[380px] text-base leading-relaxed text-header">
-                          {step.description}
-                        </p>
-                      </div>
-                      <span className="block text-7xl font-bold leading-none text-header">
-                        {step.id}
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="relative z-20 flex h-[370px] w-[580px] shrink-0 flex-col justify-center gap-6 rounded-bl-[40px] rounded-tl-[40px] bg-secondary p-12">
-                      <div>
-                        <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
-                        <p className="max-w-[380px] text-base leading-relaxed text-header">
-                          {step.description}
-                        </p>
-                      </div>
-                      <span className="block text-7xl font-bold leading-none text-header">
-                        {step.id}
-                      </span>
-                    </div>
-                    <div className="relative z-10 ml-[-15px] h-[330px] w-[440px] shrink-0 self-end overflow-hidden rounded-[24px] border-[5px] border-cards bg-cards shadow-lg">
-                      <Image
-                        src={step.image}
-                        alt={step.alt}
-                        fill
-                        className="object-cover object-top"
-                        sizes="440px"
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
+    <section className="overflow-x-hidden">
+      <div className="bg-background md:bg-[#F1FCEA] md:py-14">
+        <div className="mx-auto max-w-[1440px] px-5 md:px-20">
+          <div className="mx-auto max-w-2xl  bg-background px-8 py-10 text-center md:border-0 md:bg-transparent md:px-0 md:py-0">
+            <span className="mb-6 inline-block rounded-lg bg-cards px-5 py-2 text-sm font-bold text-header">
+              How It Works
+            </span>
+            <h2 className="mt-4 max-w-154.25 text-3xl font-semibold text-header sm:text-4xl md:text-[48px] ">
+              Three (3) steps from Curious to Confident
+            </h2>
+            <p className="mt-4 max-w-138.75 text-lg font-normal text-body md:text-xl ">
+              No installs, no agents, no access to your hosting account. Just a
+              domain and a minute of your time.
+            </p>
+          </div>
         </div>
       </div>
+
+ 
+      <div className="bg-background pb-0 md:bg-[#F1FCEA]">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-0">
+          <div className="  bg-[#F1FCEA] pt-10 pb-0 rounded-3xl md:border-0 ">
+            <div className="mx-auto max-w-275 md:px-20">
+              <div className="flex flex-col gap-6 md:gap-0">
+                {steps.map((step, index) => (
+                  <div
+                    key={step.id}
+                    className={cn(
+                      'flex justify-center',
+                      index === 1 && 'md:-translate-x-39',
+                    )}
+                  >
+                    <div className="w-full md:hidden">
+                      <div className="relative z-10 ml-14 h-48 overflow-hidden rounded-tl-3xl border-t-[5px] border-cards bg-cards">
+                        <Image
+                          src={step.image}
+                          alt={step.alt}
+                          fill
+                          className="object-cover object-top"
+                          sizes="100vw"
+                        />
+                      </div>
+                      <div className="relative z-20 -mt-6  flex flex-col gap-3 rounded-tl-[20px] bg-secondary px-6 pb-8 pt-8">
+                        <h3 className="text-lg font-bold text-header">{step.title}</h3>
+                        <p className="text-sm leading-relaxed text-header">{step.description}</p>
+                        <span className="mt-2 text-4xl font-bold leading-none text-header">{step.id}</span>
+                      </div>
+                    </div>
+
+                    <div className="hidden items-end md:flex">
+                      {step.imageLeft ? (
+                        <>
+                          <div className="relative z-0 -mr-3.75 h-82.5 w-110 shrink-0 self-end overflow-hidden rounded-tl-3xl border-t-[5px] border-l-[5px] border-cards bg-cards">
+                            <Image
+                              src={step.image}
+                              alt={step.alt}
+                              fill
+                              className="object-cover object-top"
+                              sizes="440px"
+                            />
+                          </div>
+                          <div className="relative z-10 flex h-92.5 w-145 shrink-0 flex-col justify-center gap-6 rounded-br-[40px] rounded-tr-[40px] bg-secondary p-12">
+                            <div>
+                              <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
+                              <p className="max-w-95 text-base leading-relaxed text-header">{step.description}</p>
+                            </div>
+                            <span className="block text-7xl font-bold leading-none text-header">{step.id}</span>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="relative z-10 flex h-92.5 w-145 shrink-0 flex-col justify-center gap-6 rounded-bl-[40px] rounded-tl-[40px] bg-secondary p-12">
+                            <div>
+                              <h3 className="mb-2 text-2xl font-bold text-header">{step.title}</h3>
+                              <p className="max-w-95 text-base leading-relaxed text-header">{step.description}</p>
+                            </div>
+                            <span className="block text-7xl font-bold leading-none text-header">{step.id}</span>
+                          </div>
+                          <div className="relative z-0 -ml-3.75 h-82.5 w-110 shrink-0 self-end overflow-hidden rounded-tr-3xl border-t-[5px] border-r-[5px] border-cards bg-cards">
+                            <Image
+                              src={step.image}
+                              alt={step.alt}
+                              fill
+                              className="object-cover object-top"
+                              sizes="440px"
+                            />
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
   )
 }
