@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist } from 'next/font/google'
+import { Geist, Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '~/utils'
 import { Providers } from './provider'
@@ -7,6 +7,11 @@ import { Providers } from './provider'
 const geist = Geist({
   subsets: ['latin'],
   variable: '--font-geist',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
 })
 
 export const metadata: Metadata = {
@@ -25,8 +30,9 @@ export default function RootLayout({
       <body
         className={cn(
           geist.variable,
+          inter.variable,
           geist.className,
-          'max-w-[1920px] antialiased'
+          'min-h-screen w-full antialiased'
         )}
       >
         <Providers>{children}</Providers>

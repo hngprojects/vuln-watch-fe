@@ -5,6 +5,7 @@
 
 @theme inline {
   --font-geist: var(--font-geist);
+  --font-inter: var(--font-inter);
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -79,5 +80,11 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .wrapper {
+    @apply mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8;
   }
 }
