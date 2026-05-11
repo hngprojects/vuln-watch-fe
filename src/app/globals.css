@@ -82,3 +82,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .wrapper {
+    @apply mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Override browser autofill default styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #2b2b2b !important;
+}

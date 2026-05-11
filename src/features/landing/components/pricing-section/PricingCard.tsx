@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { ROUTES } from '~/constants/routes'
 import { cn } from '~/utils'
 import { Plan } from './types'
 
@@ -75,7 +76,7 @@ const PricingCard = ({ plan, index }: PricingCardProps) => {
         {/* CTA */}
         <div className="mt-6">
           <Link
-            href="/demo"
+            href={ROUTES.REGISTER}
             className="group/btn bg-primary text-primary-foreground relative block w-full overflow-hidden rounded-xl py-3.5 text-center text-sm font-semibold transition-colors hover:bg-[#0a3d36]"
           >
             <span className="relative">
