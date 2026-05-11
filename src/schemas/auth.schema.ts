@@ -11,6 +11,7 @@ export const signUpSchema = z
     password: z
       .string()
       .min(12, 'Password must be at least 12 characters')
+      .regex(/[A-Z]/, 'Password must have at least one uppercase letter')
       .regex(/[0-9]/, 'Password must contain at least one number')
       .regex(/[^A-Za-z0-9]/, 'Password must contain at least one symbol'),
     confirmPassword: z.string().min(1, 'Please confirm your password'),

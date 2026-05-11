@@ -35,8 +35,8 @@ export function SocialAuthButton({
       const data = await response.json()
       if (data.success) {
         toast.success('Google login successful!')
-        // Save data.access_token to cookies
-        // Save data.data (user info) to Zustand store
+        console.log('Logged in! Token:', data.token, 'Email:', data.email)
+        // TODO: Save data.token to cookies and data.email to Zustand store
       } else {
         toast.error(data.message || 'Backend rejected token')
         console.error('Backend rejected token:', data)

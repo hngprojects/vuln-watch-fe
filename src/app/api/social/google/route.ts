@@ -59,8 +59,8 @@ export async function POST(request: NextRequest) {
     console.log(res, 'response')
 
     return NextResponse.json({
-      data: res.data.user,
-      access_token: res.access_token,
+      token: res.value?.token,
+      email: res.value?.email,
       success: true,
     })
   } catch (error) {

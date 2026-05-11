@@ -53,14 +53,16 @@ export function LoginForm() {
       <AuthCard>
         <div className="mb-8 flex flex-col items-center text-center">
           <div className="mb-4">
-            <Image
-              src="/images/logo-auth.png"
-              alt="VulnWatch AI Logo"
-              width={240}
-              height={69}
-              className="h-auto w-[240px] object-contain"
-              priority
-            />
+            <Link href="/">
+              <Image
+                src="/images/logo-auth.png"
+                alt="VulnWatch AI Logo"
+                width={240}
+                height={69}
+                className="h-auto w-[240px] object-contain"
+                priority
+              />
+            </Link>
           </div>
           <p className="font-geist text-center text-[15px] font-normal text-[#666666] sm:text-[16px]">
             Enter your credentials to access the secure enterprise dashboard.
