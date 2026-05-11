@@ -4,8 +4,9 @@ import type {
   ForgotPasswordFormData,
 } from '~/types/auth.types'
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'https://api.staging.vuln-watch.hng14.com'
+// NOTE: Using local proxy routes to bypass CORS during development.
+// Revert to NEXT_PUBLIC_API_URL once the backend team enables CORS.
+const PROXY_BASE = '/api/proxy'
 
 export interface ApiResponse<T> {
   isSuccess: boolean
@@ -20,11 +21,10 @@ export const authService = {
   async login(
     data: LoginFormData
   ): Promise<ApiResponse<{ token: string; email: string }>> {
-    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+    const res = await fetch(`${PROXY_BASE}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Version': '1',
       },
       body: JSON.stringify(data),
     })
@@ -34,11 +34,10 @@ export const authService = {
   async register(
     data: SignUpFormData
   ): Promise<ApiResponse<{ token: string; email: string }>> {
-    const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+    const res = await fetch(`${PROXY_BASE}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Version': '1',
       },
       body: JSON.stringify({ email: data.email, password: data.password }),
     })
@@ -48,11 +47,10 @@ export const authService = {
   async forgotPassword(
     data: ForgotPasswordFormData
   ): Promise<ApiResponse<{ message: string }>> {
-    const res = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
+    const res = await fetch(`${PROXY_BASE}/forgot-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Version': '1',
       },
       body: JSON.stringify(data),
     })
