@@ -1,4 +1,7 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
+import { useGoogleLogin } from '@react-oauth/google'
 
 interface SocialAuthButtonProps {
   text?: string
@@ -7,10 +10,48 @@ interface SocialAuthButtonProps {
 export function SocialAuthButton({
   text = 'Sign up with Google',
 }: SocialAuthButtonProps) {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        setIsLoading(true)
+        console.log('Google Token Received:', tokenResponse)
+
+        // This is the implementation we will use once the Client ID is ready
+        /*
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/google`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Version': '1'
+          },
+          body: JSON.stringify({ token: tokenResponse.access_token })
+        })
+        
+        const data = await response.json()
+        if (data.isSuccess) {
+           // Save data.value.token to cookies
+           // Save data.value.email to Zustand store
+        } else {
+           console.error('Backend rejected token:', data.error)
+        }
+        */
+      } catch (error) {
+        console.error('Google login failed:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    onError: (error) => console.log('Google Login Failed:', error),
+  })
+
   return (
     <button
       type="button"
-      className="flex h-[46px] w-full items-center justify-center gap-2 rounded-[8px] border border-[#2B2B2B80] bg-transparent px-6 py-3 transition-colors hover:bg-neutral-50 active:bg-neutral-100"
+      onClick={() => login()}
+      disabled={isLoading}
+      className="flex h-[46px] w-full items-center justify-center gap-2 rounded-[8px] border border-[#2B2B2B80] bg-transparent px-6 py-3 transition-colors hover:bg-neutral-50 active:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
     >
       <svg
         width="20"
@@ -37,7 +78,7 @@ export function SocialAuthButton({
         />
       </svg>
       <span className="font-geist text-[16px] leading-none font-normal tracking-[-0.01em] text-[#2D2D2D]">
-        {text}
+        {isLoading ? 'Connecting...' : text}
       </span>
     </button>
   )

@@ -6,6 +6,10 @@ import { Mail } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { authService } from '~/services/auth.service'
+
 import { loginSchema } from '~/schemas/auth.schema'
 import type { LoginFormData } from '~/types/auth.types'
 
@@ -16,9 +20,11 @@ import { AuthDivider } from './AuthDivider'
 import { SocialAuthButton } from './SocialAuthButton'
 
 export function LoginForm() {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -26,7 +32,20 @@ export function LoginForm() {
   })
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log('Login data:', data)
+    try {
+      const response = await authService.login(data)
+
+      if (response.isSuccess) {
+        toast.success('Successfully logged in!')
+        // In a real app, save token to Zustand/Cookies here
+        router.push('/dashboard') // Or wherever the protected route is
+      } else {
+        toast.error(response.error?.message || 'Login failed')
+        setError('root', { message: response.error?.message || 'Login failed' })
+      }
+    } catch {
+      toast.error('An unexpected error occurred. Please try again later.')
+    }
   }
 
   return (

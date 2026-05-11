@@ -6,6 +6,10 @@ import { Mail, User } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { authService } from '~/services/auth.service'
+
 import { signUpSchema } from '~/schemas/auth.schema'
 import type { SignUpFormData } from '~/types/auth.types'
 
@@ -17,9 +21,11 @@ import { AuthDivider } from './AuthDivider'
 import { SocialAuthButton } from './SocialAuthButton'
 
 export function SignUpForm() {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
@@ -27,7 +33,21 @@ export function SignUpForm() {
   })
 
   const onSubmit = async (data: SignUpFormData) => {
-    console.log('Form data:', data)
+    try {
+      const response = await authService.register(data)
+
+      if (response.isSuccess) {
+        toast.success('Successfully registered!')
+        router.push('/login')
+      } else {
+        toast.error(response.error?.message || 'Registration failed')
+        setError('root', {
+          message: response.error?.message || 'Registration failed',
+        })
+      }
+    } catch {
+      toast.error('An unexpected error occurred. Please try again later.')
+    }
   }
 
   return (

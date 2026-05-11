@@ -6,6 +6,9 @@ import { Mail, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { toast } from 'sonner'
+import { authService } from '~/services/auth.service'
+
 import { forgotPasswordSchema } from '~/schemas/auth.schema'
 import type { ForgotPasswordFormData } from '~/types/auth.types'
 
@@ -16,6 +19,7 @@ export function ForgotPasswordForm() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<ForgotPasswordFormData>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -23,7 +27,22 @@ export function ForgotPasswordForm() {
   })
 
   const onSubmit = async (data: ForgotPasswordFormData) => {
-    console.log('Forgot password data:', data)
+    try {
+      const response = await authService.forgotPassword(data)
+
+      if (response.isSuccess) {
+        toast.success(
+          response.value?.message || 'Password reset link sent to your email!'
+        )
+      } else {
+        toast.error(response.error?.message || 'Failed to send reset link')
+        setError('root', {
+          message: response.error?.message || 'Failed to send reset link',
+        })
+      }
+    } catch {
+      toast.error('An unexpected error occurred. Please try again later.')
+    }
   }
 
   return (
