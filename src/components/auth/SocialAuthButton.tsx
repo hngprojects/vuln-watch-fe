@@ -3,6 +3,8 @@
 import React, { useRef, useState } from 'react'
 import { GoogleLogin } from '@react-oauth/google'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
+import { useAuthStore } from '~/store/auth.store'
 
 interface SocialAuthButtonProps {
   text?: string
@@ -13,6 +15,7 @@ export function SocialAuthButton({
 }: SocialAuthButtonProps) {
   const [isLoading, setIsLoading] = useState(false)
   const googleButtonRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   const handleGoogleSuccess = async (credentialResponse: { credential?: string }) => {
     if (!credentialResponse.credential) {
@@ -33,10 +36,11 @@ export function SocialAuthButton({
       })
       
       const data = await response.json()
-      if (data.success) {
+      if (data.success && data.token) {
         toast.success('Google login successful!')
+        useAuthStore.getState().login(data.token, data.email)
         console.log('Logged in! Token:', data.token, 'Email:', data.email)
-        // TODO: Save data.token to cookies and data.email to Zustand store
+        router.push('/dashboard')
       } else {
         toast.error(data.message || 'Backend rejected token')
         console.error('Backend rejected token:', data)
