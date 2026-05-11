@@ -20,13 +20,15 @@ interface Organisation {
 }
 
 interface LoginResponse {
-  status_code: number
-  message: string
-  access_token: string
-  data: {
-    user: User
-    organisations: Organisation[]
-  }
+  isSuccess: boolean
+  value: {
+    token: string
+    email: string
+  } | null
+  error: {
+    code: string
+    message: string
+  } | null
 }
 
 export async function POST(request: NextRequest) {
