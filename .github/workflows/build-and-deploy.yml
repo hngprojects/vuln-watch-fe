@@ -4,6 +4,9 @@ on:
   push:
     branches: [staging, main]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     if: github.event.repository.fork == false
@@ -33,7 +36,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -105,3 +108,6 @@ jobs:
             cd $DEPLOY_DIR
             pm2 restart $APP_NAME || PORT=$PORT pm2 start server.js --name "$APP_NAME"
             pm2 save
+
+      - name: Clean up local artifact
+        run: rm -f boilerplate.tar.gz
