@@ -86,8 +86,8 @@ export function Contact() {
               you soon with the best possible solution for your needs.
             </p>
 
-            <form className="mt-8 space-y-4">
-              <div className="grid gap-x-4 gap-y-3 sm:grid-cols-2">
+            <form className="mt-8 space-y-5">
+              <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2">
                 <label className="sr-only" htmlFor="contact-name">
                   Name
                 </label>
@@ -96,7 +96,7 @@ export function Contact() {
                   name="name"
                   type="text"
                   placeholder="Name"
-                  className="h-8 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[10px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
+                  className="h-10 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[13px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
                 />
 
                 <label className="sr-only" htmlFor="contact-email">
@@ -107,7 +107,7 @@ export function Contact() {
                   name="email"
                   type="email"
                   placeholder="Email Address"
-                  className="h-8 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[10px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
+                  className="h-10 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[13px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
                 />
 
                 <label className="sr-only" htmlFor="contact-phone">
@@ -118,20 +118,26 @@ export function Contact() {
                   name="phone"
                   type="tel"
                   placeholder="Phone Number"
-                  className="h-8 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[10px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
+                  className="h-10 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[13px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
                 />
 
                 <label className="sr-only" htmlFor="contact-service">
-                  Service You are Interested
+                  Service You're Interested
                 </label>
                 <select
                   id="contact-service"
                   name="service"
                   defaultValue=""
-                  className="h-8 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[10px] text-[#7A7A7A] outline-none transition-colors focus:border-primary"
+                  className="h-10 rounded-sm border border-[#D6D6D6] bg-white px-3 text-[13px] text-[#7A7A7A] outline-none transition-colors focus:border-primary appearance-none cursor-pointer"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237A7A7A' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 8px center',
+                    paddingRight: '28px',
+                  }}
                 >
                   <option value="" disabled>
-                    Service You are Interested
+                    Service You're Interested
                   </option>
                   <option value="domain-monitoring">Domain Monitoring</option>
                   <option value="vulnerability-scan">
@@ -150,12 +156,12 @@ export function Contact() {
                 id="contact-message"
                 name="message"
                 placeholder="Message"
-                className="min-h-[130px] w-full resize-none rounded-sm border border-[#D6D6D6] bg-white px-3 py-3 text-[10px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
+                className="min-h-[130px] w-full resize-none rounded-sm border border-[#D6D6D6] bg-white px-3 py-3 text-[13px] text-primary outline-none transition-colors placeholder:text-[#7A7A7A] focus:border-primary"
               />
 
               <button
                 type="submit"
-                className="inline-flex h-8 items-center gap-2 rounded-sm bg-primary px-4 text-[10px] font-semibold text-white transition-opacity hover:opacity-90"
+                className="inline-flex h-10 items-center gap-2 rounded-sm bg-primary px-5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Send Message
                 <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-white text-primary">
