@@ -38,7 +38,9 @@ export function LoginForm() {
 
       if (response.isSuccess && response.value) {
         toast.success('Successfully logged in!')
-        useAuthStore.getState().login(response.value.token, response.value.email)
+        useAuthStore
+          .getState()
+          .login(response.value.token, response.value.email)
         router.push('/dashboard') // Or wherever the protected route is
       } else {
         toast.error(response.error?.message || 'Login failed')

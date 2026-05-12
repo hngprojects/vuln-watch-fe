@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const BACKEND_URL = process.env.BASE_URL || 'https://api.staging.vuln-watch.hng14.com/api'
+const BACKEND_URL =
+  process.env.BASE_URL || 'https://api.staging.vuln-watch.hng14.com/api'
 
 export async function POST(request: NextRequest) {
   const body = await request.json()
@@ -15,6 +16,8 @@ export async function POST(request: NextRequest) {
   })
 
   const text = await res.text()
-  const data = text ? JSON.parse(text) : { isSuccess: true, value: null, error: null }
+  const data = text
+    ? JSON.parse(text)
+    : { isSuccess: true, value: null, error: null }
   return NextResponse.json(data, { status: res.status })
 }
