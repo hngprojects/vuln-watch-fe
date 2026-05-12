@@ -28,6 +28,7 @@
 :root {
   /* VulnWatch AI Brand Colors */
   --primary: #072e28;
+  --Primary-Vulnwatch-color: #072e28;
   --primary-foreground: #ffffff;
 
   --secondary: #a0e870;
@@ -52,6 +53,7 @@
 /* I hardcoded dark mode colors until further notice */
 .dark {
   --primary: #072e28;
+  --Primary-Vulnwatch-color: #072e28;
   --primary-foreground: #ffffff;
 
   --secondary: #a0e870;
