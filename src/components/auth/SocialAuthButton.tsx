@@ -17,7 +17,9 @@ export function SocialAuthButton({
   const googleButtonRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
-  const handleGoogleSuccess = async (credentialResponse: { credential?: string }) => {
+  const handleGoogleSuccess = async (credentialResponse: {
+    credential?: string
+  }) => {
     if (!credentialResponse.credential) {
       toast.error('Google login failed. No credential received.')
       return
@@ -32,9 +34,9 @@ export function SocialAuthButton({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id_token: credentialResponse.credential })
+        body: JSON.stringify({ id_token: credentialResponse.credential }),
       })
-      
+
       const data = await response.json()
       if (data.success && data.token) {
         toast.success('Google login successful!')
@@ -54,14 +56,19 @@ export function SocialAuthButton({
   }
 
   const triggerGoogleLogin = () => {
-    const googleBtn = googleButtonRef.current?.querySelector('div[role="button"]') as HTMLElement
+    const googleBtn = googleButtonRef.current?.querySelector(
+      'div[role="button"]'
+    ) as HTMLElement
     googleBtn?.click()
   }
 
   return (
     <div className="relative w-full">
       {/* Hidden Google Login button for functionality */}
-      <div ref={googleButtonRef} className="absolute opacity-0 pointer-events-none h-0 overflow-hidden">
+      <div
+        ref={googleButtonRef}
+        className="pointer-events-none absolute h-0 overflow-hidden opacity-0"
+      >
         <GoogleLogin
           onSuccess={handleGoogleSuccess}
           onError={() => {
@@ -109,4 +116,3 @@ export function SocialAuthButton({
     </div>
   )
 }
-
