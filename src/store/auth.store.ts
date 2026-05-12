@@ -35,9 +35,17 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   login: (token, email) => {
     // Set in cookies for middleware protection
-    Cookies.set(TOKEN_KEY, token, { expires: 7, secure: true, sameSite: 'strict' })
-    Cookies.set(EMAIL_KEY, email, { expires: 7, secure: true, sameSite: 'strict' })
-    
+    Cookies.set(TOKEN_KEY, token, {
+      expires: 7,
+      secure: true,
+      sameSite: 'strict',
+    })
+    Cookies.set(EMAIL_KEY, email, {
+      expires: 7,
+      secure: true,
+      sameSite: 'strict',
+    })
+
     set({ token, email, isAuthenticated: true })
   },
 
@@ -45,7 +53,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     // Remove cookies
     Cookies.remove(TOKEN_KEY)
     Cookies.remove(EMAIL_KEY)
-    
+
     set({ token: null, email: null, isAuthenticated: false })
   },
 }))

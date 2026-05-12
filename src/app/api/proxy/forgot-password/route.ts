@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const BACKEND_URL = process.env.BASE_URL || 'https://api.staging.vuln-watch.hng14.com/api'
+const BACKEND_URL =
+  process.env.BASE_URL || 'https://api.staging.vuln-watch.hng14.com/api'
 
 export async function POST(request: NextRequest) {
   const body = await request.json()
