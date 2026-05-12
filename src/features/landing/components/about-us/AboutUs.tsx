@@ -5,7 +5,7 @@ const sections = [
     id: 'who-we-are',
     heading: 'Who we are',
     body: 'VulnWatch AI is a surface intelligence and website security platform built to help businesses identify visible security weaknesses before attackers exploit them. We simplify complex cybersecurity findings into clear, human-readable insights that teams can understand and act on quickly. Instead of overwhelming users with technical noise, we focus on clarity, prioritization, and practical remediation.',
-    image: '/images/about-who-we-are.jpg',
+    image: '/images/landing-page/Rectangle 34624202.jpg',
     alt: 'Who we are',
     imageLeft: true,
   },
@@ -13,7 +13,7 @@ const sections = [
     id: 'our-mission',
     heading: 'Our mission',
     body: 'Our mission is to make cybersecurity understandable and actionable for every business, not just security professionals. We believe businesses should be able to identify and fix critical website security risks without needing deep technical expertise, expensive consultants, or overly complicated tools. By combining automated scanning with AI-powered explanations, we help teams focus on what matters most and respond faster to potential threats.',
-    image: '/images/about-mission.jpg',
+    image: '/images/landing-page/Rectangle 34624202 (1).jpg',
     alt: 'Our mission',
     imageLeft: false,
   },
@@ -23,17 +23,17 @@ const AboutUs = () => {
   return (
     <main>
       <div
-        className="px-5 py-16 text-center md:px-20 md:py-24"
+        className="px-5 pb-10 pt-10 text-center "
         style={{
           background:
             'linear-gradient(179.2deg, #FFFFFF 53.96%, #A0E870 176.19%, #A0E870 267.79%)',
         }}
       >
-        <div className="mx-auto max-w-[1440px]">
+        <div className="mx-auto flex w-full max-w-360 flex-col gap-6">
           <h1 className="font-geist text-4xl font-bold leading-tight tracking-[-0.125rem] text-header/90 md:text-[64px] md:leading-18">
             About us
           </h1>
-          <p className="mx-auto mt-6 max-w-[780px] font-inter text-base font-normal leading-7 tracking-[-0.0625rem] text-body md:text-xl md:leading-8">
+          <p className="mx-auto max-w-[780px] font-inter text-base font-normal leading-7 tracking-[-0.0625rem] text-body md:text-xl md:leading-8">
             Most website security tools overwhelm people with technical jargon, fragmented reports,
             and unclear priorities.{' '}
             <span className="font-semibold text-header">VulnWatch AI</span> was created to change
@@ -47,10 +47,10 @@ const AboutUs = () => {
 
       <div className="bg-cards">
         {sections.map((section) => (
-          <div key={section.id} className="py-12 md:py-20">
-            <div className="mx-auto max-w-[1440px] px-5 md:px-20">
+          <div key={section.id} className="py-12 md:py-16">
+            <div className="mx-auto max-w-319.75 px-5 md:px-0">
               <div
-                className={`flex flex-col items-center gap-10 md:gap-12 ${
+                className={`flex flex-col items-center gap-10 md:gap-10.75 ${
                   section.imageLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
