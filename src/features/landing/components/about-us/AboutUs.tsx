@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Different from './different'
 
 const sections = [
   {
@@ -23,34 +24,35 @@ const AboutUs = () => {
   return (
     <main>
       <div
-        className="px-5 pb-10 pt-10 text-center "
+        className="px-5 py-16 text-center md:px-20 md:py-24"
         style={{
           background:
             'linear-gradient(179.2deg, #FFFFFF 53.96%, #A0E870 176.19%, #A0E870 267.79%)',
         }}
       >
-        <div className="mx-auto flex w-full max-w-360 flex-col gap-6">
-          <h1 className="font-geist text-4xl font-bold leading-tight tracking-[-0.125rem] text-header/90 md:text-[64px] md:leading-18">
+        <div className="mx-auto max-w-[1440px]">
+          <h1 className="font-geist text-header/90 text-4xl leading-tight font-bold tracking-[-0.125rem] md:text-[64px] md:leading-18">
             About us
           </h1>
-          <p className="mx-auto max-w-[780px] font-inter text-base font-normal leading-7 tracking-[-0.0625rem] text-body md:text-xl md:leading-8">
-            Most website security tools overwhelm people with technical jargon, fragmented reports,
-            and unclear priorities.{' '}
-            <span className="font-semibold text-header">VulnWatch AI</span> was created to change
-            that. We turn complex surface-level security checks into clear, actionable insights
-            businesses can actually understand and fix without needing a cybersecurity team.
+          <p className="font-inter text-body mx-auto mt-6 max-w-[780px] text-base leading-7 font-normal tracking-[-0.0625rem] md:text-xl md:leading-8">
+            Most website security tools overwhelm people with technical jargon,
+            fragmented reports, and unclear priorities.{' '}
+            <span className="text-header font-semibold">VulnWatch AI</span> was
+            created to change that. We turn complex surface-level security
+            checks into clear, actionable insights businesses can actually
+            understand and fix without needing a cybersecurity team.
           </p>
         </div>
       </div>
 
-      <div className="h-px bg-primary" />
+      <div className="bg-primary h-px" />
 
       <div className="bg-cards">
         {sections.map((section) => (
-          <div key={section.id} className="py-12 md:py-16">
-            <div className="mx-auto max-w-319.75 px-5 md:px-0">
+          <div key={section.id} className="py-12 md:py-20">
+            <div className="mx-auto max-w-[1440px] px-5 md:px-20">
               <div
-                className={`flex flex-col items-center gap-10 md:gap-10.75 ${
+                className={`flex flex-col items-center gap-10 md:gap-12 ${
                   section.imageLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
@@ -64,10 +66,10 @@ const AboutUs = () => {
                   />
                 </div>
                 <div className="max-w-full md:max-w-157.5">
-                  <h2 className="font-geist text-3xl font-semibold leading-tight tracking-[0.01em] text-header/90 md:text-[40px] md:leading-[70px]">
+                  <h2 className="font-geist text-header/90 text-3xl leading-tight font-semibold tracking-[0.01em] md:text-[40px] md:leading-[70px]">
                     {section.heading}
                   </h2>
-                  <p className="mt-4 text-base font-normal leading-relaxed text-body">
+                  <p className="text-body mt-4 text-base leading-relaxed font-normal">
                     {section.body}
                   </p>
                 </div>
@@ -76,6 +78,8 @@ const AboutUs = () => {
           </div>
         ))}
       </div>
+
+      <Different />
     </main>
   )
 }
