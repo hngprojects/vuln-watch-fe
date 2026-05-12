@@ -1,3 +1,5 @@
-export default function AboutUs() {
-  return <div className="">About</div>
+import AboutUs from '~/features/landing/components/about-us/AboutUs'
+
+export default function AboutUsPage() {
+  return <AboutUs />
 }
